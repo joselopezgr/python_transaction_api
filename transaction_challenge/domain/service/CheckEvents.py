@@ -1,11 +1,11 @@
-from domain.service.checkBase import CheckAbstractInterface 
-from domain.dto.clientTransactionDto import ClientTransactionDto 
+from transaction_challenge.domain.service.checkBase import CheckAbstractInterface 
+from transaction_challenge.domain.dto.clientTransactionDto import ClientTransactionDto 
 from typing import List      
 
 # 1. Check if event.type == "withdrawal" && .amount is more than 100 then throw alert 1100
 class WithdrawalAmountCheck(CheckAbstractInterface):
     def check(self, event, transactions) -> int:
-        # Given `amount` is string we have to convert it to integer
+            # Given `amount` is string we have to convert it to integer
             amount = float(event.amount)
             
             if(event.type == "withdrawal" and amount > 100):
@@ -30,7 +30,7 @@ class ConsecutiveDepositsCheck(CheckAbstractInterface):
         counter = 1
         
         for transaction in transactions:
-            if transaction.type == "deposit" and transaction.amount < event.amount:
+            if transaction.type == "deposit" and float(transaction.amount) < float(event.amount):
                 counter += 1
         if counter >= 3:
             return 300
@@ -39,9 +39,20 @@ class ConsecutiveDepositsCheck(CheckAbstractInterface):
 # 4. Check if event.type == "deposit" && event.time
 class DepositTimeAmountCheck(CheckAbstractInterface):
     def check(self, event, transactions) -> int:
-        transaction_window: List[ClientTransactionDto] = []
+        if event.type != "deposit":
+            return 0
         
-        if(event.type == "deposit"):
-            transaction_window.append(event)
+        current_time = event.time
+        total_amount = 0
+        
+        for transaction in transactions:
+            if(
+                transaction.type == "deposit" and
+                0 <= current_time - transaction.time <= 30
+            ):
+                total_amount += float(transaction.amount)
+        
+        if total_amount > 200:
+            return 123
         
         return 0

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from domain.dto.clientTransactionDto import ClientTransactionDto
-from domain.dto.eventResponseDto import EventResponseDto
+from transaction_challenge.domain.dto.clientTransactionDto import ClientTransactionDto
+from transaction_challenge.domain.dto.eventResponseDto import EventResponseDto
 from typing import List, Optional
 
 class CheckAbstractInterface(ABC):
