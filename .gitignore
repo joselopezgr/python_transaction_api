@@ -1,0 +1,93 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual Environment directories
+venv/
+.env/
+
+# macOS metadata files
+.DS_Store
+
+# Environment variable files
+.env
+*.env
+
+# Flask instance folder
+instance/
+
+# Flask cache files
+flask_session/
+
+# Logs
+*.log
+logs/
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+*.coverage.*
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# MyPy type checker cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Bandit security scanner
+.bandit
+
+# Test and debug artifacts
+.tox/
+.nox/
+*.egg-info/
+.eggs/
+*.pkl
+
+# Build artifacts
+build/
+dist/
+*.egg
+*.wheel
+
+# pipenv and poetry
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Temporary files and directories
+*.tmp
+*.temp
+*.bak
+*.old
+*.swp
+*.swo
+*~
+Thumbs.db
+
+# Compiled static assets
+staticfiles/
+node_modules/
+
+# Database files
+*.sqlite3
+*.db
+
+# Docker
+*.env.docker
+docker-compose.override.yml

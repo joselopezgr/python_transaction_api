@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "python-challenge"
+version = "0.1.0"
+description = "Transaction Challenge"
+authors = ["Jose Lopez <joselopezgr@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+flask = "^3.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
