@@ -50,4 +50,5 @@ class DepositTimeAmountCheck(CheckAbstractInterface):
                 total_amount += float(transaction.amount)
         if total_amount > 200:
             return 123
+          
         return 0

@@ -23,7 +23,7 @@ def test_handle_withdrawal_event_unhappy():
     assert not response['alert']
     assert 1100 not in response['alert_codes']
 
-# 2. TESTS FOR THE CONSECUTIVE WITHDRAWALS CHECK
+# 2. TESTS FOR THE CONSECUTIVE WITHDRAWALS CHECK 
 def test_handle_deposit_event():
     event_data_1 = ClientTransactionDto(type="withdrawal", amount="20", time=10, user_id=1)
     event_data_2 = ClientTransactionDto(type="withdrawal", amount="20", time=10, user_id=1)
