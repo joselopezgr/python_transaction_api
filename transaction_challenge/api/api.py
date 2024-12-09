@@ -1,8 +1,8 @@
 from flask import Blueprint, current_app, request, jsonify
 from pydantic import ValidationError
-from domain.dto.eventResponseDto import EventResponseDto
-from domain.dto.clientTransactionDto import ClientTransactionDto
-from domain.service.Event_handler import EventHandler
+from transaction_challenge.domain.dto.eventResponseDto import EventResponseDto
+from transaction_challenge.domain.dto.clientTransactionDto import ClientTransactionDto
+from transaction_challenge.domain.service.Event_handler import EventHandler
 
 api = Blueprint("api", __name__)
 
