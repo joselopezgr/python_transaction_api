@@ -1,22 +1,76 @@
 # Transaction Challenge
 
 ## Ho to run:
-- Run command
+#### Setup virtual environment
+```python
+# Ensure Python is installed and create the virtual env
+python -m venv venv
+source venv/bin/activate
+```
 
+#### Install dependencies
+```python
+pip install -r requirements.txt
+```
 
-## How I did it
+#### Run the app
+```python
+#Make sure you are in the right folder
+python main.py
+```
 
-Given my experience with API and the use of architecture patterns (DDD, Hexagonal, OOP) I went for the following approach:
-- Structure: 
-- Flow: 
-- Benefits: 
+## How to Test
 
-## Challenges Encountered
+#### Run command
+```python
+pytest
+```
 
-Some of the challenges I have come across this app are the followings:
+# The App Design
 
-- First time using Python but very happy given all my experience with other languages and techonlogies like Java, C#, TypeScript and JavaScript learning Python has been very enjoyable and rewarding. 
+Given my experience in building APIs and implementing architecture patterns like Domain-Driven Design (DDD), Hexagonal Architecture, and Object-Oriented Programming (OOP), I followed a modular and maintainable approach. Here’s an overview:
 
-- V.Environment: Learning how virtual environments lives in VSCode so I could use the packages installed within it (i.e.: Flask);
+### Structure:
+- Modular Design: The app is split into different modules to handle domain logic, API requests, and other responsibilities separately.
 
-- Syntax: As a polyglote engineer I really enjoy trying new techs and languages, I find very fascinating learning Python uses decorators ("@") and types ("-> dict");
+- Domain Layer: Contains business logic and validations using DTOs (Data Transfer Objects) and abstract base classes for consistency.
+### Flow: 
+- Endpoint Execution:
+The `POST /event` endpoint triggers the `EventHandler`. It determines the type of transaction (e.g., "deposit" or "withdrawal") and loops through various checks implemented in the `CheckBase` subclasses.
+
+- Checks Execution:
+Each check method validates specific business rules. The results are aggregated and returned as part of the response object.
+### Validation: 
+- Input Validation:
+The `ClientTransactionDTO` ensures the request payload is structured correctly and enforces type checks (e.g., event.type is always "deposit" or "withdrawal").
+
+- Code Validation:
+Abstract base classes (e.g., `CheckBase`) standardize the structure of the `.check()` methods for maintainability and scalability.
+
+### Benefits:
+- Maintainability:
+Code is modular and easy to modify. For instance, updating a specific check in `CheckEvents.py` does not require changes to the API layer.
+
+- Scalability:
+New checks can be added without affecting the core flow.
+
+- Readability and Debugging:
+Clear separation of concerns allows debugging in smaller, manageable files instead of monolithic codebases.
+
+# Challenges Encountered
+
+Here are some challenges I faced during this project:
+
+- First-Time Python Experience:
+Despite being new to Python, I leveraged my experience with languages like Java, C#, TypeScript, and JavaScript to pick it up quickly. Python’s clean syntax and powerful features made this process enjoyable.
+
+- Virtual Environments:
+Setting up and managing the virtual environment within VSCode was initially tricky. Understanding how it isolates dependencies and integrates with tools like Flask was a valuable learning experience.
+
+- Syntax and Features:
+Python's use of decorators (@), type annotations, and return types (e.g., -> dict) was fascinating to learn and use. The use of whitespace for code blocks (instead of braces) and minimal parentheses in control flow statements provided a refreshing perspective.
+
+# Future Improvements
+- Enhanced Logging: Add detailed logs for each step in the transaction handling process for better traceability.
+- Error Handling: Implement more robust error handling to provide informative responses for invalid requests.
+- Performance Optimization: Profile the code to ensure efficient processing of large transaction datasets.
