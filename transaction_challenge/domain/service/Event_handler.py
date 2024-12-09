@@ -1,12 +1,12 @@
 from transaction_challenge.domain.dto.clientTransactionDto import ClientTransactionDto
 from transaction_challenge.domain.dto.eventResponseDto import EventResponseDto
-from transaction_challenge.domain.service.CheckEvents import *
+from transaction_challenge.domain.service.CheckEvents import WithdrawalAmountCheck, WithdrawalLengthCheck, DepositTimeAmountCheck, ConsecutiveDepositsCheck
 from typing import List
 
 class EventHandler:
     # In-memory array list storage to keep track of transations (otherwise use DB)
     depositTransactions = []
-    withdrawalTransactions = []    
+    withdrawalTransactions = []
     
     @staticmethod
     def handle_event(event_data: ClientTransactionDto) -> EventResponseDto:

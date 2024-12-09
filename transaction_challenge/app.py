@@ -11,3 +11,4 @@ def create_app() -> Flask:
 
 def configure_logging() -> None:
     logging.basicConfig(level=logging.INFO)
+

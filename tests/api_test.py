@@ -1,4 +1,3 @@
-import pytest
 from flask.testing import FlaskClient
 
 # Test for a Successcul API call

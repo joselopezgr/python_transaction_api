@@ -1,16 +1,15 @@
 from transaction_challenge.domain.service.checkBase import CheckAbstractInterface 
-from transaction_challenge.domain.dto.clientTransactionDto import ClientTransactionDto 
 
 # 1. Check: if the amount withdrew is more than 100 throw alert 1100
 class WithdrawalAmountCheck(CheckAbstractInterface):
     def check(self, event, transactions) -> int:
-            # Given `amount` is string we have to convert it to integer
-            amount = float(event.amount)
-            
-            # First check if its the right type and check for amount withdrew
-            if(event.type == "withdrawal" and amount > 100):
-                return 1100
-            return 0
+        # Given `amount` is string we have to convert it to integer
+        amount = float(event.amount)
+        
+        # First check if its the right type and check for amount withdrew
+        if event.type == "withdrawal" and amount > 100:
+            return 1100
+        return 0
 
 # 2. Check: if 3 consecutive withdrawals throw alert 30
 class WithdrawalLengthCheck(CheckAbstractInterface):
