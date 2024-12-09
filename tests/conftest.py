@@ -1,19 +1,22 @@
-from typing import Generator
-
 import pytest
-from flask.testing import FlaskClient
 from flask import Flask
-
+from flask.testing import FlaskClient
 from transaction_challenge.app import create_app
 
-
 @pytest.fixture
-def app() -> Generator[Flask, None, None]:
+def app() -> Flask:
     app = create_app()
-    with app.app_context():
-        yield app
-
+    app.config.update({
+        "TESTING": True,
+    })
+    return app
 
 @pytest.fixture
 def client(app: Flask) -> FlaskClient:
     return app.test_client()
+
+@pytest.fixture(autouse=True)
+def reset_transactions():
+    from transaction_challenge.domain.service.Event_handler import EventHandler
+    EventHandler.depositTransactions = []
+    EventHandler.withdrawalTransactions = []

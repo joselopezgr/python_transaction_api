@@ -1,4 +1,3 @@
-import pytest
 from flask.testing import FlaskClient
 
 def test_happy_path_event_api(client: FlaskClient):
@@ -17,6 +16,8 @@ def test_happy_path_event_api(client: FlaskClient):
         "user_id": 1
     }
     
+
+# Test for Unsuccesful API call (wrong input)
 def test_unhappy_path_event_api(client: FlaskClient):
     event_data = {
         "type": "wrong_type",

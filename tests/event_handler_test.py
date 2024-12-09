@@ -80,6 +80,16 @@ def test_handle_30s_consecutive_event():
     assert response['alert']
     assert 123 in response['alert_codes']
     
+def test_handle_30s_consecutive_event_different_times():
+    event_data_1 = ClientTransactionDto(type="deposit", amount="100", time=50, user_id=1)
+    event_data_2 = ClientTransactionDto(type="deposit", amount="100", time=60, user_id=1)
+    event_data_3 = ClientTransactionDto(type="deposit", amount="50", time=80, user_id=1)
+    EventHandler.handle_event(event_data_1)
+    EventHandler.handle_event(event_data_2)
+    response = EventHandler.handle_event(event_data_3)
+    assert response['alert']
+    assert 123 in response['alert_codes']
+
 def test_handle_30s_consecutive_event_unhappy():
     event_data_1 = ClientTransactionDto(type="deposit", amount="100", time=0, user_id=1)
     event_data_2 = ClientTransactionDto(type="deposit", amount="100", time=40, user_id=1)
